@@ -1,0 +1,1672 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0">
+    <title>Admin Panel - Mandal Darshan</title>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700&family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        /* ===== THEME VARIABLES ===== */
+        :root,
+        [data-theme="dark"] {
+            --bg-primary: #0f0f1a;
+            --bg-secondary: rgba(15, 15, 26, 0.85);
+            --bg-panel: rgba(255, 255, 255, 0.03);
+            --bg-header: linear-gradient(135deg, rgba(255, 107, 53, 0.15), rgba(255, 69, 0, 0.05));
+            --text-primary: #e0e0e0;
+            --text-secondary: #888;
+            --text-muted: #666;
+            --text-white: #fff;
+            --text-input: #e0e0e0;
+            --text-label: #aaa;
+            --border-color: rgba(255, 255, 255, 0.06);
+            --border-light: rgba(255, 255, 255, 0.04);
+            --border-accent: rgba(255, 107, 53, 0.15);
+            --input-bg: rgba(255, 255, 255, 0.04);
+            --input-border: rgba(255, 255, 255, 0.08);
+            --input-placeholder: #555;
+            --shadow-panel: none;
+            --header-border: rgba(255, 107, 53, 0.15);
+            --card-border: rgba(255, 255, 255, 0.06);
+            --card-bg: rgba(255, 255, 255, 0.02);
+            --card-hover-border: rgba(255, 107, 53, 0.2);
+            --card-hover-bg: rgba(255, 107, 53, 0.03);
+            --btn-secondary-bg: rgba(255, 255, 255, 0.05);
+            --btn-secondary-color: #ccc;
+            --btn-secondary-border: rgba(255, 255, 255, 0.08);
+            --btn-logout-bg: rgba(255, 255, 255, 0.03);
+            --btn-logout-color: #888;
+            --btn-logout-border: rgba(255, 255, 255, 0.05);
+            --message-success-bg: rgba(40, 167, 69, 0.12);
+            --message-success-color: #5cb85c;
+            --message-success-border: rgba(40, 167, 69, 0.2);
+            --message-error-bg: rgba(220, 53, 69, 0.12);
+            --message-error-color: #ff6b6b;
+            --message-error-border: rgba(220, 53, 69, 0.2);
+            --info-text-bg: rgba(255, 107, 53, 0.06);
+            --info-text-border: rgba(255, 107, 53, 0.1);
+            --mandal-card-color: #FF6B35;
+            --mandal-info-color: #999;
+            --admin-footer-color: #666;
+            --admin-footer-border: rgba(255, 255, 255, 0.05);
+            --theme-btn-bg: rgba(255, 255, 255, 0.06);
+            --theme-btn-border: rgba(255, 255, 255, 0.08);
+            --theme-btn-hover: rgba(255, 255, 255, 0.1);
+            --theme-btn-color: #ddd;
+            --theme-btn-shadow: none;
+            --bg-gradient-start: rgba(255, 107, 53, 0.08);
+            --bg-gradient-end: rgba(255, 69, 0, 0.05);
+            --section-title-color: #fff;
+            --sub-title-color: #FF6B35;
+            --back-link-color: #FF6B35;
+            --back-link-bg: rgba(255, 255, 255, 0.05);
+            --back-link-border: rgba(255, 107, 53, 0.2);
+        }
+
+        /* ===== LIGHT THEME ===== */
+        [data-theme="light"] {
+            --bg-primary: #f8f6f0;
+            --bg-secondary: rgba(248, 246, 240, 0.92);
+            --bg-panel: rgba(255, 255, 255, 0.6);
+            --bg-header: linear-gradient(135deg, rgba(255, 107, 53, 0.1), rgba(255, 69, 0, 0.04));
+            --text-primary: #2c2c2c;
+            --text-secondary: #555;
+            --text-muted: #777;
+            --text-white: #1a1a1a;
+            --text-input: #2c2c2c;
+            --text-label: #666;
+            --border-color: rgba(0, 0, 0, 0.08);
+            --border-light: rgba(0, 0, 0, 0.04);
+            --border-accent: rgba(255, 107, 53, 0.15);
+            --input-bg: rgba(255, 255, 255, 0.9);
+            --input-border: rgba(0, 0, 0, 0.1);
+            --input-placeholder: #aaa;
+            --shadow-panel: 0 4px 20px rgba(0,0,0,0.04);
+            --header-border: rgba(255, 107, 53, 0.12);
+            --card-border: rgba(0, 0, 0, 0.06);
+            --card-bg: rgba(255, 255, 255, 0.4);
+            --card-hover-border: rgba(255, 107, 53, 0.25);
+            --card-hover-bg: rgba(255, 107, 53, 0.05);
+            --btn-secondary-bg: rgba(0, 0, 0, 0.04);
+            --btn-secondary-color: #555;
+            --btn-secondary-border: rgba(0, 0, 0, 0.08);
+            --btn-logout-bg: rgba(0, 0, 0, 0.03);
+            --btn-logout-color: #888;
+            --btn-logout-border: rgba(0, 0, 0, 0.05);
+            --message-success-bg: rgba(40, 167, 69, 0.1);
+            --message-success-color: #2d8a3e;
+            --message-success-border: rgba(40, 167, 69, 0.2);
+            --message-error-bg: rgba(220, 53, 69, 0.08);
+            --message-error-color: #c0392b;
+            --message-error-border: rgba(220, 53, 69, 0.15);
+            --info-text-bg: rgba(255, 107, 53, 0.05);
+            --info-text-border: rgba(255, 107, 53, 0.12);
+            --mandal-card-color: #FF6B35;
+            --mandal-info-color: #666;
+            --admin-footer-color: #777;
+            --admin-footer-border: rgba(0, 0, 0, 0.06);
+            --theme-btn-bg: rgba(0, 0, 0, 0.05);
+            --theme-btn-border: rgba(0, 0, 0, 0.08);
+            --theme-btn-hover: rgba(0, 0, 0, 0.08);
+            --theme-btn-color: #555;
+            --theme-btn-shadow: 0 2px 8px rgba(0,0,0,0.04);
+            --bg-gradient-start: rgba(255, 107, 53, 0.06);
+            --bg-gradient-end: rgba(255, 69, 0, 0.04);
+            --section-title-color: #1a1a1a;
+            --sub-title-color: #FF6B35;
+            --back-link-color: #FF6B35;
+            --back-link-bg: rgba(255, 255, 255, 0.5);
+            --back-link-border: rgba(255, 107, 53, 0.2);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            font-size: 16px;
+            -webkit-text-size-adjust: 100%;
+            transition: background-color 0.3s ease;
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: 'Poppins', sans-serif;
+            background: var(--bg-primary);
+            color: var(--text-primary);
+            min-height: 100vh;
+            -webkit-overflow-scrolling: touch;
+            transition: background-color 0.4s cubic-bezier(0.4, 0, 0.2, 1), color 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        body::before {
+            content: '';
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: 
+                radial-gradient(ellipse at 20% 50%, var(--bg-gradient-start) 0%, transparent 50%),
+                radial-gradient(ellipse at 80% 50%, var(--bg-gradient-end) 0%, transparent 50%);
+            pointer-events: none;
+            z-index: 0;
+            transition: background 0.3s ease;
+        }
+
+        .container {
+            max-width: 1300px;
+            margin: 0 auto;
+            padding: 25px;
+            position: relative;
+            z-index: 1;
+        }
+
+        .header {
+            background: var(--bg-header);
+            border: 1px solid var(--header-border);
+            color: var(--text-primary);
+            padding: 30px 35px;
+            border-radius: 16px;
+            margin-bottom: 30px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            backdrop-filter: blur(20px);
+            transition: background 0.3s ease, border-color 0.3s ease;
+        }
+
+        .header h1 {
+            font-family: 'Playfair Display', serif;
+            font-size: clamp(20px, 2.2vw, 28px);
+            color: var(--text-white);
+            font-weight: 600;
+            transition: color 0.3s ease;
+        }
+
+        .header h1 span {
+            color: #FF6B35;
+        }
+
+        .header-right {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .back-link {
+            background: var(--back-link-bg);
+            color: var(--back-link-color);
+            padding: 10px 22px;
+            border-radius: 10px;
+            text-decoration: none;
+            font-weight: 500;
+            transition: all 0.3s cubic-bezier(0.23, 1, 0.32, 1);
+            font-size: clamp(11px, 0.9vw, 13px);
+            border: 1px solid var(--back-link-border);
+            white-space: nowrap;
+        }
+
+        .back-link:hover {
+            background: #FF6B35;
+            color: white;
+            border-color: #FF6B35;
+            box-shadow: 0 4px 15px rgba(255, 107, 53, 0.3);
+            transform: translateY(-2px);
+        }
+
+        /* ===== LOGOUT DROPDOWN (Hidden until clicked) ===== */
+        .logout-gear {
+            background: var(--theme-btn-bg);
+            border: 1px solid var(--theme-btn-border);
+            color: var(--theme-btn-color);
+            width: 40px;
+            height: 40px;
+            border-radius: 10px;
+            cursor: pointer;
+            font-size: 18px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.3s cubic-bezier(0.23, 1, 0.32, 1);
+            font-family: 'Poppins', sans-serif;
+            position: relative;
+        }
+
+        .logout-gear:hover {
+            background: var(--theme-btn-hover);
+            transform: translateY(-2px) rotate(30deg);
+        }
+
+        .logout-gear .icon {
+            transition: transform 0.4s ease;
+        }
+
+        .logout-gear:hover .icon {
+            transform: rotate(15deg);
+        }
+
+        .logout-dropdown {
+            position: absolute;
+            top: calc(100% + 8px);
+            right: 0;
+            background: var(--bg-modal);
+            backdrop-filter: blur(40px);
+            -webkit-backdrop-filter: blur(40px);
+            border: 1px solid var(--modal-border);
+            border-radius: 12px;
+            padding: 8px;
+            min-width: 180px;
+            box-shadow: var(--modal-shadow);
+            opacity: 0;
+            visibility: hidden;
+            transform: translateY(-10px) scale(0.95);
+            transition: all 0.35s cubic-bezier(0.34, 1.56, 0.64, 1);
+            z-index: 100;
+        }
+
+        .logout-dropdown.active {
+            opacity: 1;
+            visibility: visible;
+            transform: translateY(0) scale(1);
+        }
+
+        .logout-dropdown button {
+            width: 100%;
+            padding: 10px 16px;
+            background: transparent;
+            border: none;
+            color: var(--text-primary);
+            font-family: 'Poppins', sans-serif;
+            font-size: 13px;
+            font-weight: 500;
+            border-radius: 8px;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            transition: all 0.2s cubic-bezier(0.23, 1, 0.32, 1);
+        }
+
+        .logout-dropdown button:hover {
+            background: rgba(255, 107, 53, 0.1);
+            color: #FF6B35;
+            transform: translateX(4px);
+        }
+
+        /* ===== THEME TOGGLE BUTTON ===== */
+        .theme-toggle-btn {
+            background: var(--theme-btn-bg);
+            border: 1px solid var(--theme-btn-border);
+            color: var(--theme-btn-color);
+            width: 40px;
+            height: 40px;
+            border-radius: 10px;
+            cursor: pointer;
+            font-size: 18px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.3s ease;
+            font-family: 'Poppins', sans-serif;
+            box-shadow: var(--theme-btn-shadow);
+        }
+
+        .theme-toggle-btn:hover {
+            background: var(--theme-btn-hover);
+            transform: translateY(-2px);
+        }
+
+        .theme-toggle-btn:active {
+            transform: translateY(-1px);
+        }
+
+        .theme-toggle-btn .icon {
+            transition: transform 0.4s ease;
+        }
+
+        .theme-toggle-btn:hover .icon {
+            transform: rotate(15deg);
+        }
+
+        .content {
+            display: grid;
+            grid-template-columns: 1fr 2fr;
+            gap: 30px;
+        }
+
+        .login-panel, .form-panel, .list-panel {
+            background: var(--bg-panel);
+            border: 1px solid var(--border-color);
+            padding: 30px;
+            border-radius: 16px;
+            backdrop-filter: blur(20px);
+            transition: background 0.3s ease, border-color 0.3s ease;
+            box-shadow: var(--shadow-panel);
+        }
+
+        .hidden {
+            display: none;
+        }
+
+        .form-group {
+            margin-bottom: 18px;
+        }
+
+        label {
+            display: block;
+            font-weight: 500;
+            margin-bottom: 6px;
+            color: var(--text-label);
+            font-size: clamp(11px, 0.9vw, 13px);
+            letter-spacing: 0.3px;
+            transition: color 0.3s ease;
+        }
+
+        input, textarea {
+            width: 100%;
+            padding: 12px 16px;
+            border: 1.5px solid var(--input-border);
+            border-radius: 10px;
+            font-size: clamp(13px, 0.9vw, 14px);
+            font-family: 'Poppins', sans-serif;
+            transition: all 0.35s cubic-bezier(0.4, 0, 0.2, 1);
+            background: var(--input-bg);
+            color: var(--text-input);
+        }
+
+        .password-input-wrapper {
+            position: relative;
+            display: flex;
+            align-items: center;
+            width: 100%;
+        }
+
+        .password-input-wrapper input {
+            padding-right: 45px;
+            width: 100%;
+        }
+
+        .password-toggle-btn {
+            position: absolute;
+            right: 12px;
+            background: transparent;
+            border: none;
+            cursor: pointer;
+            font-size: 18px;
+            color: var(--text-secondary);
+            padding: 8px 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            border-radius: 8px;
+        }
+
+        .password-toggle-btn:hover {
+            color: #FF6B35;
+            background: rgba(255, 107, 53, 0.1);
+            transform: scale(1.1);
+        }
+
+        .password-toggle-btn:active {
+            transform: scale(0.95);
+        }
+
+        .eye-icon {
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            display: inline-block;
+        }
+
+        input:focus, textarea:focus {
+            outline: none;
+            border-color: #FF6B35;
+            background: rgba(255, 107, 53, 0.05);
+            box-shadow: 0 0 20px rgba(255, 107, 53, 0.08);
+            transform: translateY(-2px);
+        }
+
+        input::placeholder, textarea::placeholder {
+            color: var(--input-placeholder);
+        }
+
+        textarea {
+            resize: vertical;
+            min-height: 80px;
+        }
+
+        .button-group {
+            display: flex;
+            gap: 12px;
+            margin-top: 20px;
+        }
+
+        button {
+            flex: 1;
+            padding: 12px 20px;
+            border: none;
+            border-radius: 10px;
+            cursor: pointer;
+            font-weight: 600;
+            transition: all 0.3s;
+            font-size: clamp(12px, 0.9vw, 14px);
+            font-family: 'Poppins', sans-serif;
+            -webkit-tap-highlight-color: transparent;
+        }
+
+        .btn-primary {
+            background: linear-gradient(135deg, #FF6B35, #FF4500);
+            color: white;
+            box-shadow: 0 4px 15px rgba(255, 107, 53, 0.2);
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 25px rgba(255, 107, 53, 0.3);
+        }
+
+        .btn-secondary {
+            background: var(--btn-secondary-bg);
+            color: var(--btn-secondary-color);
+            border: 1px solid var(--btn-secondary-border);
+        }
+
+        .btn-secondary:hover {
+            background: rgba(255, 255, 255, 0.08);
+        }
+
+        .btn-danger {
+            background: rgba(220, 53, 69, 0.15);
+            color: #ff6b6b;
+            border: 1px solid rgba(220, 53, 69, 0.2);
+            flex: 0.5;
+        }
+
+        .btn-danger:hover {
+            background: rgba(220, 53, 69, 0.25);
+        }
+
+        .btn-logout {
+            background: var(--btn-logout-bg);
+            color: var(--btn-logout-color);
+            width: 100%;
+            margin-top: 15px;
+            border: 1px solid var(--btn-logout-border);
+        }
+
+        .btn-logout:hover {
+            background: rgba(255, 255, 255, 0.06);
+        }
+
+        .mandal-card {
+            border: 1px solid var(--card-border);
+            border-radius: 12px;
+            padding: 18px;
+            margin-bottom: 15px;
+            background: var(--card-bg);
+            transition: all 0.3s;
+        }
+
+        .mandal-card:hover {
+            border-color: var(--card-hover-border);
+            background: var(--card-hover-bg);
+            box-shadow: 0 4px 20px rgba(0,0,0,0.2);
+        }
+
+        .mandal-card h3 {
+            font-family: 'Playfair Display', serif;
+            margin-bottom: 8px;
+            color: var(--mandal-card-color);
+            font-size: clamp(15px, 1.2vw, 18px);
+        }
+
+        .mandal-info {
+            font-size: clamp(11px, 0.8vw, 12px);
+            color: var(--mandal-info-color);
+            margin-bottom: 12px;
+            line-height: 1.7;
+            transition: color 0.3s ease;
+        }
+
+        .mandal-actions {
+            display: flex;
+            gap: 10px;
+        }
+
+        .mandal-actions button {
+            flex: 1;
+            padding: 8px 12px;
+            font-size: clamp(11px, 0.8vw, 12px);
+        }
+
+        .arti-row {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 15px;
+        }
+
+        .arti-row.full {
+            grid-template-columns: 1fr;
+        }
+
+        .search-box {
+            margin-bottom: 20px;
+            display: flex;
+            gap: 10px;
+        }
+
+        .search-box input {
+            flex: 1;
+        }
+
+        .search-box button {
+            flex: 0.3;
+            white-space: nowrap;
+        }
+
+        .message {
+            padding: 14px 18px;
+            margin-bottom: 18px;
+            border-radius: 10px;
+            display: none;
+            font-size: clamp(12px, 0.8vw, 13px);
+            font-weight: 500;
+        }
+
+        .message.success {
+            background: var(--message-success-bg);
+            color: var(--message-success-color);
+            border: 1px solid var(--message-success-border);
+            display: block;
+        }
+
+        .message.error {
+            background: var(--message-error-bg);
+            color: var(--message-error-color);
+            border: 1px solid var(--message-error-border);
+            display: block;
+        }
+
+        .login-form h2 {
+            font-family: 'Playfair Display', serif;
+            margin-bottom: 25px;
+            text-align: center;
+            color: var(--text-white);
+            font-size: clamp(20px, 1.8vw, 24px);
+            transition: color 0.3s ease;
+        }
+
+        .info-text {
+            background: var(--info-text-bg);
+            color: #FF6B35;
+            padding: 14px;
+            border-radius: 10px;
+            margin-bottom: 18px;
+            font-size: clamp(12px, 0.8vw, 13px);
+            line-height: 1.6;
+            border: 1px solid var(--info-text-border);
+        }
+
+        .row-2col {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 15px;
+        }
+
+        .section-title {
+            font-family: 'Playfair Display', serif;
+            font-size: clamp(16px, 1.5vw, 20px);
+            color: var(--section-title-color);
+            margin-bottom: 20px;
+            font-weight: 600;
+            transition: color 0.3s ease;
+        }
+
+        .sub-title {
+            color: var(--sub-title-color);
+            font-size: clamp(13px, 1vw, 15px);
+            margin-top: 20px;
+            margin-bottom: 15px;
+            font-weight: 500;
+        }
+
+        /* Footer */
+        .admin-footer {
+            text-align: center;
+            padding: 25px 0;
+            margin-top: 40px;
+            border-top: 1px solid var(--admin-footer-border);
+        }
+
+        .admin-footer p {
+            color: var(--admin-footer-color);
+            font-size: clamp(11px, 0.8vw, 12px);
+            font-weight: 300;
+            transition: color 0.3s ease;
+        }
+
+        .admin-footer .brand {
+            font-family: 'Playfair Display', serif;
+            color: #FF6B35;
+            font-weight: 600;
+        }
+
+        /* ===== LARGE SCREENS / TV (1400px+) ===== */
+        @media (min-width: 1400px) {
+            .container {
+                max-width: 1500px;
+                padding: 35px;
+            }
+
+            .content {
+                gap: 35px;
+            }
+
+            .header {
+                padding: 35px 45px;
+                border-radius: 20px;
+            }
+
+            .login-panel, .form-panel, .list-panel {
+                padding: 35px;
+                border-radius: 20px;
+            }
+        }
+
+        /* ===== EXTRA LARGE SCREENS / TV (1920px+) ===== */
+        @media (min-width: 1920px) {
+            .container {
+                max-width: 1700px;
+                padding: 40px;
+            }
+
+            .content {
+                gap: 40px;
+            }
+
+            .header {
+                padding: 40px 50px;
+                border-radius: 24px;
+            }
+
+            .login-panel, .form-panel, .list-panel {
+                padding: 40px;
+                border-radius: 24px;
+            }
+
+            .row-2col {
+                gap: 20px;
+            }
+
+            .arti-row {
+                gap: 20px;
+            }
+        }
+
+        /* ===== TABLET / SMALL LAPTOP (1024px - 1399px) ===== */
+        @media (min-width: 1024px) and (max-width: 1399px) {
+            .container {
+                padding: 20px;
+            }
+
+            .header {
+                padding: 25px 30px;
+            }
+
+            .content {
+                gap: 25px;
+            }
+
+            .login-panel, .form-panel, .list-panel {
+                padding: 25px;
+            }
+        }
+
+        /* ===== TABLET PORTRAIT (768px - 1023px) ===== */
+        @media (min-width: 768px) and (max-width: 1023px) {
+            .container {
+                padding: 18px;
+            }
+
+            .header {
+                padding: 22px 25px;
+                flex-direction: row;
+                gap: 15px;
+            }
+
+            .header h1 {
+                font-size: 22px;
+            }
+
+            .content {
+                gap: 20px;
+                grid-template-columns: 1fr;
+            }
+
+            .login-panel {
+                max-width: 450px;
+                margin: 0 auto;
+            }
+
+            .login-panel, .form-panel, .list-panel {
+                padding: 25px;
+            }
+
+            #adminDashboard > div {
+                grid-template-columns: 1fr !important;
+                gap: 20px;
+            }
+
+            .row-2col {
+                grid-template-columns: 1fr 1fr;
+            }
+
+            .arti-row {
+                grid-template-columns: 1fr 1fr;
+            }
+
+            .search-box button {
+                flex: 0.4;
+            }
+        }
+
+        /* ===== MOBILE (480px - 767px) ===== */
+        @media (max-width: 767px) {
+            .container {
+                padding: 12px;
+            }
+
+            .header {
+                padding: 18px 20px;
+                flex-direction: column;
+                gap: 12px;
+                text-align: center;
+                border-radius: 12px;
+                margin-bottom: 20px;
+            }
+
+            .header h1 {
+                font-size: 20px;
+            }
+
+            .header-right {
+                gap: 8px;
+            }
+
+            .theme-toggle-btn {
+                width: 34px;
+                height: 34px;
+                font-size: 15px;
+                border-radius: 8px;
+            }
+
+            .content {
+                gap: 18px;
+                grid-template-columns: 1fr;
+            }
+
+            .login-panel {
+                max-width: 100%;
+                margin: 0 auto;
+                padding: 25px 20px;
+            }
+
+            .login-form h2 {
+                font-size: 22px;
+            }
+
+            .login-form .form-group {
+                margin-bottom: 15px;
+            }
+
+            .login-form input {
+                padding: 14px 16px;
+                font-size: 16px;
+            }
+
+            .login-form button {
+                padding: 14px;
+                font-size: 15px;
+            }
+
+            #adminDashboard > div {
+                grid-template-columns: 1fr !important;
+                gap: 18px;
+            }
+
+            .form-panel, .list-panel {
+                padding: 20px;
+                border-radius: 12px;
+            }
+
+            .section-title {
+                font-size: 18px;
+                margin-bottom: 15px;
+            }
+
+            .form-group {
+                margin-bottom: 14px;
+            }
+
+            input, textarea {
+                padding: 11px 14px;
+                font-size: 16px;
+                border-radius: 8px;
+            }
+
+            label {
+                font-size: 12px;
+                margin-bottom: 5px;
+            }
+
+            .row-2col {
+                grid-template-columns: 1fr;
+                gap: 0;
+            }
+
+            .arti-row {
+                grid-template-columns: 1fr;
+                gap: 0;
+            }
+
+            .sub-title {
+                font-size: 14px;
+                margin-top: 16px;
+                margin-bottom: 12px;
+            }
+
+            .button-group {
+                flex-direction: column;
+                gap: 10px;
+            }
+
+            .button-group button {
+                width: 100%;
+                padding: 14px;
+                font-size: 14px;
+            }
+
+            .btn-danger {
+                flex: 1;
+            }
+
+            .btn-logout {
+                padding: 14px;
+                font-size: 14px;
+                margin-top: 12px;
+            }
+
+            .mandal-card {
+                padding: 15px;
+                border-radius: 10px;
+                margin-bottom: 12px;
+            }
+
+            .mandal-card h3 {
+                font-size: 16px;
+            }
+
+            .mandal-info {
+                font-size: 12px;
+            }
+
+            .mandal-actions {
+                flex-direction: column;
+                gap: 8px;
+            }
+
+            .mandal-actions button {
+                width: 100%;
+                padding: 10px;
+                font-size: 13px;
+            }
+
+            .search-box {
+                flex-direction: column;
+                gap: 8px;
+            }
+
+            .search-box input {
+                font-size: 16px;
+            }
+
+            .search-box button {
+                width: 100%;
+                padding: 12px;
+                font-size: 14px;
+            }
+
+            .message {
+                padding: 12px 14px;
+                font-size: 12px;
+                border-radius: 8px;
+            }
+
+            .info-text {
+                padding: 12px;
+                font-size: 12px;
+            }
+
+            .admin-footer {
+                padding: 20px 0;
+                margin-top: 25px;
+            }
+
+            .admin-footer p {
+                font-size: 11px;
+            }
+        }
+
+        /* ===== SMALL MOBILE (<480px) ===== */
+        @media (max-width: 479px) {
+            .container {
+                padding: 8px;
+            }
+
+            .header {
+                padding: 14px 16px;
+                border-radius: 10px;
+            }
+
+            .header h1 {
+                font-size: 18px;
+            }
+
+            .back-link {
+                padding: 8px 16px;
+                font-size: 11px;
+                border-radius: 8px;
+            }
+
+            .theme-toggle-btn {
+                width: 30px;
+                height: 30px;
+                font-size: 13px;
+                border-radius: 6px;
+            }
+
+            .form-panel, .list-panel {
+                padding: 16px;
+                border-radius: 10px;
+            }
+
+            .section-title {
+                font-size: 16px;
+            }
+
+            .login-panel {
+                padding: 20px 16px;
+            }
+
+            .login-form h2 {
+                font-size: 20px;
+            }
+
+            .mandal-card {
+                padding: 12px;
+            }
+
+            .mandal-card h3 {
+                font-size: 15px;
+            }
+        }
+
+        /* ===== REDUCED MOTION ===== */
+        @media (prefers-reduced-motion: reduce) {
+            .back-link:hover,
+            .btn-primary:hover,
+            .btn-secondary:hover,
+            .btn-danger:hover,
+            .btn-logout:hover,
+            .mandal-card:hover,
+            .theme-toggle-btn:hover {
+                transform: none !important;
+                transition: none !important;
+            }
+        }
+
+        /* ===== PRINT STYLES ===== */
+        @media print {
+            body {
+                background: #fff;
+                color: #000;
+            }
+
+            body::before {
+                display: none;
+            }
+
+            .header {
+                background: #f5f5f5;
+                border: 1px solid #ddd;
+                color: #000;
+                border-radius: 0;
+                padding: 15px;
+            }
+
+            .header h1, .header h1 span, .section-title, .sub-title {
+                color: #000;
+                -webkit-text-fill-color: #000;
+            }
+
+            .back-link, .btn-primary, .btn-secondary, .btn-danger, .btn-logout, .search-box button, .theme-toggle-btn {
+                display: none !important;
+            }
+
+            .form-panel, .list-panel, .login-panel {
+                background: none;
+                border: 1px solid #ddd;
+                backdrop-filter: none;
+                -webkit-backdrop-filter: none;
+            }
+
+            input, textarea {
+                border: 1px solid #ccc;
+                color: #000;
+                background: #fff;
+            }
+
+            .mandal-card {
+                border: 1px solid #ddd;
+                background: #fafafa;
+            }
+
+            .mandal-card h3 {
+                color: #333;
+            }
+
+            .container {
+                max-width: 100%;
+                padding: 10px;
+            }
+
+            .content {
+                display: block;
+            }
+
+            #adminDashboard > div {
+                display: block !important;
+            }
+
+            .form-panel, .list-panel {
+                margin-bottom: 20px;
+            }
+        }
+
+        /* ===== HIGH DPI / RETINA ===== */
+        @media (-webkit-min-device-pixel-ratio: 2), (min-resolution: 192dpi) {
+            input, textarea, button, .back-link, .mandal-card {
+                -webkit-font-smoothing: antialiased;
+                -moz-osx-font-smoothing: grayscale;
+            }
+        }
+
+        /* ===== SMOOTH ANIMATIONS & TRANSITIONS ===== */
+        
+        /* Smooth transitions for all interactive elements */
+        button, a, input, select, textarea {
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        /* Smooth loading state */
+        .loading {
+            animation: fadeIn 0.4s ease-out;
+        }
+
+        /* Smooth form fade-in */
+        .form-panel, .list-panel, .login-panel {
+            animation: panelFadeIn 0.6s ease-out;
+        }
+
+        @keyframes panelFadeIn {
+            0% { opacity: 0; transform: translateY(20px); }
+            100% { opacity: 1; transform: translateY(0); }
+        }
+
+        /* Smooth button interactions */
+        button {
+            position: relative;
+            overflow: hidden;
+        }
+
+        button:hover {
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        button:active {
+            transition: all 0.1s ease-out;
+        }
+
+        /* Smooth link hover effects */
+        a {
+            position: relative;
+            transition: color 0.3s ease, text-shadow 0.3s ease;
+        }
+
+        /* Smooth form input focus with glow */
+        input:focus, textarea:focus, select:focus {
+            transition: all 0.35s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        /* Smooth success/error message animations */
+        .message {
+            animation: messageSlideIn 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
+        }
+
+        @keyframes messageSlideIn {
+            0% { opacity: 0; transform: translateY(-20px); }
+            100% { opacity: 1; transform: translateY(0); }
+        }
+
+        /* Smooth dropdown animations */
+        .logout-dropdown {
+            transition: all 0.35s cubic-bezier(0.34, 1.56, 0.64, 1);
+        }
+
+        /* Smooth panel hover effects */
+        .login-panel:hover, .form-panel:hover, .list-panel:hover {
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        /* Smooth back link animations */
+        .back-link {
+            transition: all 0.35s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .back-link:hover {
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        /* Smooth text selection */
+        ::selection {
+            background: rgba(255, 107, 53, 0.2);
+            color: inherit;
+            transition: background 0.3s ease;
+        }
+
+        ::-moz-selection {
+            background: rgba(255, 107, 53, 0.2);
+            color: inherit;
+            transition: background 0.3s ease;
+        }
+
+        /* Smooth scroll behavior */
+        @supports (scroll-behavior: smooth) {
+            html {
+                scroll-behavior: smooth;
+            }
+        }
+
+        /* Enhanced hover lift effect for all clickable elements */
+        button:hover, .back-link:hover, input[type="button"]:hover {
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <!-- Header -->
+        <div class="header">
+            <h1>🏛️ Admin <span>Panel</span></h1>
+            <div class="header-right">
+                <button class="theme-toggle-btn" onclick="toggleTheme()" title="Toggle theme" aria-label="Toggle dark/light mode">
+                    <span class="icon" id="themeIcon">🌙</span>
+                </button>
+                <a href="/index.html" class="back-link">🏠 Home</a>
+                <div style="position: relative;" id="logoutGearContainer" class="hidden">
+                    <button class="logout-gear" onclick="toggleLogoutMenu(event)" title="Settings">
+                        <span class="icon">⚙️</span>
+                    </button>
+                    <div class="logout-dropdown" id="logoutDropdown">
+                        <button onclick="logout(); closeLogoutMenu();">🚪 Logout</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Main Content -->
+        <div class="content">
+            <!-- Login Panel -->
+            <div class="login-panel" id="loginPanel">
+                <div class="login-form">
+                    <h2>Admin Login</h2>
+                    <div class="info-text">
+                        🔐 Enter the admin password to manage mandals.
+                    </div>
+                    <div class="form-group">
+                        <label>Admin Password</label>
+                        <div class="password-input-wrapper">
+                            <input type="password" id="adminPassword" placeholder="Enter password">
+                            <button type="button" class="password-toggle-btn" id="passwordToggleBtn" onclick="togglePasswordVisibility()" title="Show/Hide Password">
+                                <span class="eye-icon">👁️</span>
+                            </button>
+                        </div>
+                    </div>
+                    <button class="btn-primary" onclick="login()" style="width: 100%;">Login</button>
+                </div>
+            </div>
+
+            <!-- Admin Dashboard (hidden until login) -->
+            <div id="adminDashboard" class="hidden" style="grid-column: 1 / -1;">
+                <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 30px;">
+                    <!-- Form Panel -->
+                    <div class="form-panel">
+                        <h2 class="section-title">Add / Edit Mandal</h2>
+                        <div id="message"></div>
+
+                        <div class="form-group">
+                            <label>Mandal Name *</label>
+                            <input type="text" id="name" placeholder="e.g., Lalbaugcha Raja">
+                        </div>
+
+                        <div class="row-2col">
+                            <div class="form-group">
+                                <label>Latitude *</label>
+                                <input type="number" id="latitude" placeholder="e.g., 19.0176" step="0.0001">
+                            </div>
+                            <div class="form-group">
+                                <label>Longitude *</label>
+                                <input type="number" id="longitude" placeholder="e.g., 72.8479" step="0.0001">
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label>Address</label>
+                            <input type="text" id="address" placeholder="e.g., Lalbaug, Mumbai">
+                        </div>
+
+                        <div class="row-2col">
+                            <div class="form-group">
+                                <label>Email</label>
+                                <input type="email" id="email" placeholder="e.g., mandal@example.com">
+                            </div>
+                            <div class="form-group">
+                                <label>Area</label>
+                                <input type="text" id="area" placeholder="e.g., Central Mumbai">
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label>Image URL</label>
+                            <input type="text" id="image_url" placeholder="e.g., https://example.com/image.jpg">
+                        </div>
+
+                        <div class="form-group">
+                            <label>📅 Established Year</label>
+                            <input type="text" id="established_year" placeholder="e.g., 1892">
+                        </div>
+
+                        <div class="form-group">
+                            <label>📝 Description</label>
+                            <textarea id="description" placeholder="Brief description about this mandal..." rows="3"></textarea>
+                        </div>
+
+                        <div class="form-group">
+                            <label>💬 Bappa Quote</label>
+                            <input type="text" id="quote" placeholder="e.g., Ganpati Bappa Morya!">
+                        </div>
+
+                        <h3 class="sub-title">Arti Timings</h3>
+                        <div class="arti-row">
+                            <div class="form-group">
+                                <label>🌅 Morning Arti</label>
+                                <input type="time" id="morning_arti">
+                            </div>
+                            <div class="form-group">
+                                <label>☀️ Afternoon Arti</label>
+                                <input type="time" id="afternoon_arti">
+                            </div>
+                        </div>
+                        <div class="arti-row full">
+                            <div class="form-group">
+                                <label>🌙 Evening Arti</label>
+                                <input type="time" id="evening_arti">
+                            </div>
+                        </div>
+
+                        <div class="button-group">
+                            <button class="btn-primary" onclick="saveMandal()">💾 Save Mandal</button>
+                            <button class="btn-secondary" onclick="clearForm()">Clear</button>
+                        </div>
+                        <button class="btn-logout" onclick="logout()">🚪 Logout</button>
+                    </div>
+
+                    <!-- List Panel -->
+                    <div class="list-panel">
+                        <h2 class="section-title">Mandals List</h2>
+                        <div class="search-box">
+                            <input type="text" id="searchInput" placeholder="Search mandals...">
+                            <button class="btn-secondary" onclick="searchMandals()">Search</button>
+                        </div>
+                        <div id="mandalsList"></div>
+                    </div>
+                </div>
+                <div class="admin-footer">
+                    <p>Made with ❤️ by <span class="brand">LADKA MUMBAI CHA (DAKSH VASANI)</span></p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // API Configuration — leave empty for same-domain deployment (Vercel)
+        // For local development, use '' (empty string)
+        const API_BASE = '';
+
+        let authToken = null;
+        let allMandals = [];
+        let editingId = null;
+
+        // ===== THEME MANAGEMENT =====
+        function getPreferredTheme() {
+            const saved = localStorage.getItem('mandalDarshanTheme');
+            if (saved) return saved;
+            return window.matchMedia('(prefers-color-scheme: light)').matches ? 'light' : 'dark';
+        }
+
+        function setTheme(theme) {
+            document.documentElement.setAttribute('data-theme', theme);
+            localStorage.setItem('mandalDarshanTheme', theme);
+            const icon = document.getElementById('themeIcon');
+            if (icon) {
+                icon.textContent = theme === 'dark' ? '🌙' : '☀️';
+            }
+        }
+
+        function toggleTheme() {
+            const current = document.documentElement.getAttribute('data-theme') || 'dark';
+            const next = current === 'dark' ? 'light' : 'dark';
+            setTheme(next);
+        }
+
+        // Initialize theme on load
+        document.addEventListener('DOMContentLoaded', () => {
+            setTheme(getPreferredTheme());
+        });
+
+        // Listen for system theme changes
+        window.matchMedia('(prefers-color-scheme: light)').addEventListener('change', (e) => {
+            if (!localStorage.getItem('mandalDarshanTheme')) {
+                setTheme(e.matches ? 'light' : 'dark');
+            }
+        });
+
+        // Toggle Password Visibility
+        function togglePasswordVisibility() {
+            const passwordInput = document.getElementById('adminPassword');
+            const toggleBtn = document.getElementById('passwordToggleBtn');
+            const eyeIcon = toggleBtn.querySelector('.eye-icon');
+            
+            if (passwordInput.type === 'password') {
+                passwordInput.type = 'text';
+                eyeIcon.textContent = '👁️‍🗨️';
+                toggleBtn.title = 'Hide Password';
+            } else {
+                passwordInput.type = 'password';
+                eyeIcon.textContent = '👁️';
+                toggleBtn.title = 'Show Password';
+            }
+        }
+
+        // Login - sends password to server for verification
+        function login() {
+            const password = document.getElementById('adminPassword').value;
+            if (!password) {
+                showMessage('Please enter password', 'error');
+                return;
+            }
+
+            // Verify password against the server's dedicated login endpoint
+            fetch(API_BASE + '/api/login', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({ password })
+            })
+            .then(r => r.json())
+            .then(response => {
+                if (response.error) {
+                    showMessage(response.error, 'error');
+                } else if (response.success) {
+                    authToken = password;
+                    document.getElementById('loginPanel').classList.add('hidden');
+                    document.getElementById('adminDashboard').classList.remove('hidden');
+                    document.getElementById('logoutGearContainer').classList.remove('hidden');
+                    loadMandals();
+                }
+            })
+            .catch(err => {
+                showMessage('Cannot connect to server. Check your deployment.', 'error');
+            });
+        }
+
+        // Logout
+        function logout() {
+            authToken = null;
+            editingId = null;
+            document.getElementById('adminDashboard').classList.add('hidden');
+            document.getElementById('loginPanel').classList.remove('hidden');
+            document.getElementById('logoutGearContainer').classList.add('hidden');
+            document.getElementById('adminPassword').value = '';
+            clearForm();
+        }
+
+        // Toggle logout dropdown menu
+        function toggleLogoutMenu(e) {
+            e.stopPropagation();
+            const dropdown = document.getElementById('logoutDropdown');
+            dropdown.classList.toggle('active');
+        }
+
+        function closeLogoutMenu() {
+            document.getElementById('logoutDropdown').classList.remove('active');
+        }
+
+        // Close dropdown when clicking outside
+        document.addEventListener('click', (e) => {
+            const container = document.getElementById('logoutGearContainer');
+            const dropdown = document.getElementById('logoutDropdown');
+            if (container && !container.contains(e.target)) {
+                dropdown.classList.remove('active');
+            }
+        });
+
+        // Load all mandals
+        function loadMandals() {
+            fetch(API_BASE + '/api/mandals')
+                .then(r => r.json())
+                .then(data => {
+                    allMandals = data;
+                    displayMandals(allMandals);
+                })
+                .catch(err => showMessage('Failed to load mandals', 'error'));
+        }
+
+        // Display mandals
+        function displayMandals(mandals) {
+            const list = document.getElementById('mandalsList');
+            if (mandals.length === 0) {
+                list.innerHTML = '<div class="info-text">No mandals found</div>';
+                return;
+            }
+
+            list.innerHTML = mandals.map(mandal => `
+                <div class="mandal-card">
+                    <h3>${mandal.name}</h3>
+                    <div class="mandal-info">
+                        <div>📍 ${mandal.address || 'N/A'}</div>
+                        <div>✉️ ${mandal.email || 'N/A'}</div>
+                        <div>📍 ${mandal.area || 'N/A'}</div>
+                        ${mandal.morning_arti || mandal.afternoon_arti || mandal.evening_arti ? `
+                        <div style="margin-top: 8px; color: #FF6B35;">
+                            ${mandal.morning_arti ? `🌅 ${mandal.morning_arti} ` : ''}
+                            ${mandal.afternoon_arti ? `☀️ ${mandal.afternoon_arti} ` : ''}
+                            ${mandal.evening_arti ? `🌙 ${mandal.evening_arti}` : ''}
+                        </div>
+                        ` : ''}
+                    </div>
+                    <div class="mandal-actions">
+                        <button class="btn-secondary" onclick="editMandal(${mandal.id})">✏️ Edit</button>
+                        <button class="btn-danger" onclick="deleteMandal(${mandal.id})">🗑️ Delete</button>
+                    </div>
+                </div>
+            `).join('');
+        }
+
+        // Search mandals
+        function searchMandals() {
+            const query = document.getElementById('searchInput').value;
+            const filtered = allMandals.filter(m =>
+                m.name.toLowerCase().includes(query.toLowerCase()) ||
+                (m.address && m.address.toLowerCase().includes(query.toLowerCase())) ||
+                (m.area && m.area.toLowerCase().includes(query.toLowerCase()))
+            );
+            displayMandals(filtered);
+        }
+
+        // Edit mandal
+        function editMandal(id) {
+            const mandal = allMandals.find(m => m.id === id);
+            if (!mandal) return;
+
+            editingId = id;
+            document.getElementById('name').value = mandal.name;
+            document.getElementById('address').value = mandal.address || '';
+            document.getElementById('latitude').value = mandal.latitude;
+            document.getElementById('longitude').value = mandal.longitude;
+            document.getElementById('email').value = mandal.email || '';
+            document.getElementById('area').value = mandal.area || '';
+            document.getElementById('image_url').value = mandal.image_url || '';
+            document.getElementById('established_year').value = mandal.established_year || '';
+            document.getElementById('description').value = mandal.description || '';
+            document.getElementById('quote').value = mandal.quote || '';
+            document.getElementById('morning_arti').value = timeToInput(mandal.morning_arti);
+            document.getElementById('afternoon_arti').value = timeToInput(mandal.afternoon_arti);
+            document.getElementById('evening_arti').value = timeToInput(mandal.evening_arti);
+
+            document.querySelector('.section-title').textContent = '✏️ Edit Mandal';
+            document.querySelector('.btn-primary').textContent = '📝 Update Mandal';
+            
+            // Scroll to form on mobile
+            if (window.innerWidth <= 767) {
+                document.querySelector('.form-panel').scrollIntoView({ behavior: 'smooth', block: 'start' });
+            }
+        }
+
+        // Time conversion
+        function timeToInput(timeString) {
+            if (!timeString) return '';
+            const [hours, minutes] = timeString.replace(/ (AM|PM)/i, '').split(':');
+            return `${hours.padStart(2, '0')}:${minutes.padStart(2, '0')}`;
+        }
+
+        function inputToTime(timeInput) {
+            if (!timeInput) return null;
+            const [hours, minutes] = timeInput.split(':');
+            const h = parseInt(hours);
+            const m = parseInt(minutes);
+            const period = h >= 12 ? 'PM' : 'AM';
+            const displayHours = h > 12 ? h - 12 : (h === 0 ? 12 : h);
+            return `${String(displayHours).padStart(2, '0')}:${String(m).padStart(2, '0')} ${period}`;
+        }
+
+        // Save mandal
+        function saveMandal() {
+            const name = document.getElementById('name').value.trim();
+            const latitude = parseFloat(document.getElementById('latitude').value);
+            const longitude = parseFloat(document.getElementById('longitude').value);
+
+            if (!name || isNaN(latitude) || isNaN(longitude)) {
+                showMessage('Please fill required fields (Name, Latitude, Longitude)', 'error');
+                return;
+            }
+
+            const data = {
+                password: authToken,
+                name,
+                address: document.getElementById('address').value.trim(),
+                latitude,
+                longitude,
+                email: document.getElementById('email').value.trim(),
+                area: document.getElementById('area').value.trim(),
+                image_url: document.getElementById('image_url').value.trim(),
+                description: document.getElementById('description').value.trim(),
+                established_year: document.getElementById('established_year').value.trim(),
+                quote: document.getElementById('quote').value.trim(),
+                morning_arti: inputToTime(document.getElementById('morning_arti').value),
+                afternoon_arti: inputToTime(document.getElementById('afternoon_arti').value),
+                evening_arti: inputToTime(document.getElementById('evening_arti').value)
+            };
+
+            const method = editingId ? 'PUT' : 'POST';
+            const url = editingId ? `/api/mandals/${editingId}` : '/api/mandals';
+
+            fetch(API_BASE + url, {
+                method,
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify(data)
+            })
+            .then(r => r.json())
+            .then(response => {
+                if (response.error) {
+                    showMessage(response.error, 'error');
+                } else {
+                    showMessage(response.message, 'success');
+                    clearForm();
+                    loadMandals();
+                }
+            })
+            .catch(err => showMessage('Error saving mandal', 'error'));
+        }
+
+        // Delete mandal
+        function deleteMandal(id) {
+            if (!confirm('Are you sure you want to delete this mandal?')) return;
+
+            fetch(API_BASE + `/api/mandals/${id}`, {
+                method: 'DELETE',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({ password: authToken })
+            })
+            .then(r => r.json())
+            .then(response => {
+                if (response.error) {
+                    showMessage(response.error, 'error');
+                } else {
+                    showMessage(response.message, 'success');
+                    loadMandals();
+                }
+            })
+            .catch(err => showMessage('Error deleting mandal', 'error'));
+        }
+
+        // Clear form
+        function clearForm() {
+            editingId = null;
+            document.getElementById('name').value = '';
+            document.getElementById('address').value = '';
+            document.getElementById('latitude').value = '';
+            document.getElementById('longitude').value = '';
+            document.getElementById('email').value = '';
+            document.getElementById('area').value = '';
+            document.getElementById('image_url').value = '';
+            document.getElementById('morning_arti').value = '';
+            document.getElementById('afternoon_arti').value = '';
+            document.getElementById('evening_arti').value = '';
+            document.getElementById('searchInput').value = '';
+            document.querySelector('.section-title').textContent = 'Add / Edit Mandal';
+            document.querySelector('.btn-primary').textContent = '💾 Save Mandal';
+            loadMandals();
+        }
+
+        // Show message
+        function showMessage(text, type) {
+            const msg = document.getElementById('message');
+            msg.textContent = text;
+            msg.className = `message ${type}`;
+            setTimeout(() => msg.className = 'message', 4000);
+        }
+    </script>
+</body>
+</html>
